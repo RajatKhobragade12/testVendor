@@ -3,6 +3,7 @@ const app = express();
 const router = require('./src/routes/routes');
 app.use(express.json());
 
+
 app.use('/api', router);
 
 

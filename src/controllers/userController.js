@@ -24,14 +24,15 @@ async function getVendorUsersDetails(req, res) {
             return res.status(400).send({ message: "Missing fields" })
         }
         const selectDb = 'use conqtvms_dev'
-        connection.query(selectDb, (err) => {
-            console.log(err)
+        connection.query(selectDb, (error) => {
+            if (error) {
+                return res.status(400).send({ message: "Error in fetch data", error: error.message })
+            }
         })
         const data = `select suppliers, UserName,Name from PrLineItems INNER JOIN VendorUsers where custOrgId=${custOrgId} and prLineItemId=${prId}`
         if (data) {
             const getData = connection.query(data, (error, result) => {
                 if (error) {
-                    console.log(error.message, "error")
                     return res.status(400).send({ message: "Error in fetch data", error: error.message })
                 } else {
                     res.status(200).send({ message: "Data fetched successfully", data: result })
