@@ -56,3 +56,12 @@ DB Host - nodejs-technical-test.cm30rlobuoic.ap-southeast-1.rds.amazonaws.com
 Port  - 3306
  
 Note : Checkout the Table before starting the Test, All the provided details should be in the response.
+
+
+
+
+
+Run Application
+
+1) Install all depedencies - npm i
+2) run application - npm start

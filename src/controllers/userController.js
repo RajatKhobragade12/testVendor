@@ -27,11 +27,13 @@ async function getVendorUsersDetails(req, res) {
         if(!prId || !custOrgId){
             return res.status(400).send({message:"Missing fields"})
         }
-            const selectDb = 'use mysql'
+            const selectDb = 'use conqtvms_dev'
             connection.query(selectDb,(err)=>{
                 console.log(err)
             })
-            const data = `select * from PrLineItems where prId=${prId} and custOrgId=${custOrgId}`
+            // const data = `select * from PrLineItems INNER JOIN VendorUsers limit 10`
+            // select * from PrLineItems 
+            const data = `select * from PrLineItems where custOrgId=${custOrgId} and prLineItemId=${prId}`
             if(data){
                 const getData =  connection.query(data,(error,res)=>{
                     if(error){
@@ -39,7 +41,7 @@ async function getVendorUsersDetails(req, res) {
                         // return res.status(400).send({ message: "Error in fetch data",error:error.message})
                     }else{
                         console.log(res,"result")
-                        return  res.status(200).send({ message: "Data fetched successfully",data:getData})
+                        // return  res.status(200).send({ message: "Data fetched successfully",data:getData})
                         
                     }
     
